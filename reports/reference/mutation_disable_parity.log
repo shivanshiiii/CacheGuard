@@ -1,0 +1,7 @@
+TEST cold miss, spatial hits, index sweep, conflicts, address extremes
+TEST CPU backpressure and continuous-valid requests
+TEST memory latency 1/2/7 plus jitter and request stalls
+TEST coordinated reset in LOOKUP/MEM_REQ/all refill beats/VERIFY/RESP
+TEST all 1024 cache data bit positions, one transient fault at a time
+FATAL: tb/tb_cacheguard.sv:144: DATA MISMATCH addr=00002000 got=0fe8eaff expected=0fe8eafe
+       Time: 13985000  Scope: tb_cacheguard

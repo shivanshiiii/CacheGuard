@@ -1,0 +1,3 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/yosys -V
+
+Yosys 0.33 (git sha1 2584903a060)

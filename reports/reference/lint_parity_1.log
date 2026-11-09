@@ -1,0 +1,2 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/verilator --lint-only -Wall --top-module cacheguard -GENABLE_PARITY=1 rtl/cacheguard.v rtl/cacheguard_array.v
+

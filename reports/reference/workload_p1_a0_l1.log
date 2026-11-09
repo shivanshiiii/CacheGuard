@@ -1,0 +1,4 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/vvp -M /workspace/scratch/62293a3354d3/eda-tools/usr/lib/x86_64-linux-gnu/ivl /workspace/scratch/62293a3354d3/CacheGuard/build/workloads_1.vvp +pattern=0 +latency=1 +metrics=reports/latest/workload_p1_a0_l1.json
+
+PASS workload parity=1 pattern=0 delay=1 hits=255 misses=1 cycle_sum=525
+tb/tb_workloads.sv:110: $finish called at 10400000 (1ps)

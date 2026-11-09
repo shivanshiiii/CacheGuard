@@ -1,0 +1,23 @@
+name: CacheGuard verification
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: sudo apt-get update && sudo apt-get install -y iverilog yosys verilator
+      - name: Simulate, lint and synthesize
+        run: python3 scripts/run.py all
+      - name: Check that deliberate RTL defects are rejected
+        run: python3 scripts/mutation_check.py
+      - name: Compare workloads and memory delays
+        run: python3 scripts/benchmark.py
+      - name: Preserve reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cacheguard-reports
+          path: reports/latest/

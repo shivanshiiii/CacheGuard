@@ -1,0 +1,8 @@
+# Filled by scripts/run.py; baseline and protected use exactly the same flow.
+read_verilog rtl/cacheguard.v rtl/cacheguard_array.v
+chparam -set ENABLE_PARITY @PARITY@ cacheguard
+hierarchy -check -top cacheguard
+synth -top cacheguard -flatten
+check -assert
+tee -o @STATS@ stat -json
+write_verilog -noattr @NETLIST@

@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "provenance": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+    "python": "3.12.14",
+    "sha256": {
+      "rtl/cacheguard.v": "d57bfba09fb757753fafc7580874f0add005f428978e088e84deaf3097fb35ce",
+      "rtl/cacheguard_array.v": "ab6ca2c57eb8570071dc4f1ac39f3f2544a2b225c9b86bc92b714625958f84df",
+      "scripts/benchmark.py": "44f930eed41bfe15f156c3a68a0ac9640f552c1e457d6ae2bcd57163f816692f",
+      "scripts/mutation_check.py": "eadb8bd8c80a7696ec8fc25001aa66ab7ee17617a6ab23db500c8120c5d7a55d",
+      "scripts/run.py": "e33eb76eedbe14722d83da91173215245f45387ffb77b1f888a963a86751f4d8",
+      "synth/generic.ys.in": "04cd67c2bf1cc3245109bcc463303ce60dbf186b7335c4b6bcbc8245994b961c",
+      "tb/backing_memory.sv": "c4d406debdf82937d2763f9df93b454c975e2601b4cdbf31904d72bd66e195c3",
+      "tb/tb_cacheguard.sv": "c753fe94bb3e4f1c50c18ed0d1cc79684251dece4df5438fb1ef0bcfeb8ff446",
+      "tb/tb_protection_limits.sv": "dc8944675fb067851de560f57c269ea35de58f71cbe06ef084da99d045cccb1f",
+      "tb/tb_workloads.sv": "11dd09f17ab32e3f6e72f64a0a7db986420dac6747de2721792d54a2742ed723"
+    }
+  },
+  "mutations": [
+    {
+      "mutation": "disable_parity",
+      "rejected": true,
+      "return_code": 1,
+      "expected_failure": "DATA MISMATCH"
+    },
+    {
+      "mutation": "damage_refill",
+      "rejected": true,
+      "return_code": 1,
+      "expected_failure": "DATA MISMATCH"
+    },
+    {
+      "mutation": "accept_while_busy",
+      "rejected": true,
+      "return_code": 1,
+      "expected_failure": "More than one outstanding CPU request"
+    },
+    {
+      "mutation": "drop_stalled_response",
+      "rejected": true,
+      "return_code": 1,
+      "expected_failure": "CPU response changed under backpressure"
+    }
+  ]
+}

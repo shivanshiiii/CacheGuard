@@ -1,0 +1,1156 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/yosys -s /workspace/scratch/62293a3354d3/CacheGuard/build/protected.ys
+
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Executing script file `/workspace/scratch/62293a3354d3/CacheGuard/build/protected.ys' --
+
+1. Executing Verilog-2005 frontend: rtl/cacheguard.v
+Parsing Verilog input from `rtl/cacheguard.v' to AST representation.
+Generating RTLIL representation for module `\cacheguard'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: rtl/cacheguard_array.v
+Parsing Verilog input from `rtl/cacheguard_array.v' to AST representation.
+Generating RTLIL representation for module `\cacheguard_array'.
+Successfully finished Verilog frontend.
+Parameter \ENABLE_PARITY = 1
+
+3. Executing AST frontend in derive mode using pre-parsed AST for module `\cacheguard'.
+Parameter \ENABLE_PARITY = 1
+Generating RTLIL representation for module `$paramod\cacheguard\ENABLE_PARITY=32'00000000000000000000000000000001'.
+
+4. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1. Analyzing design hierarchy..
+Top module:  \cacheguard
+Used module:     \cacheguard_array
+Parameter \ENABLE_PARITY = 1
+
+4.2. Executing AST frontend in derive mode using pre-parsed AST for module `\cacheguard_array'.
+Parameter \ENABLE_PARITY = 1
+Generating RTLIL representation for module `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001'.
+
+4.3. Analyzing design hierarchy..
+Top module:  \cacheguard
+Used module:     $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001
+
+4.4. Analyzing design hierarchy..
+Top module:  \cacheguard
+Used module:     $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001
+Removing unused module `\cacheguard_array'.
+Removed 1 unused modules.
+
+5. Executing SYNTH pass.
+
+5.1. Executing HIERARCHY pass (managing design hierarchy).
+
+5.1.1. Analyzing design hierarchy..
+Top module:  \cacheguard
+Used module:     $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001
+
+5.1.2. Analyzing design hierarchy..
+Top module:  \cacheguard
+Used module:     $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001
+Removed 0 unused modules.
+
+5.2. Executing PROC pass (convert processes to netlists).
+
+5.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+5.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$rtl/cacheguard_array.v:33$249 in module $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.
+Marked 4 switch rules as full_case in process $proc$rtl/cacheguard_array.v:42$187 in module $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.
+Marked 6 switch rules as full_case in process $proc$rtl/cacheguard.v:54$161 in module cacheguard.
+Removed a total of 0 dead cases.
+
+5.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 4 redundant assignments.
+Promoted 17 assignments to connections.
+
+5.2.4. Executing PROC_INIT pass (extract init attributes).
+
+5.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+5.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~15 debug messages>
+
+5.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:33$249'.
+     1/3: $1$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_EN[0:0]$255
+     2/3: $1$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$256
+     3/3: $1$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_ADDR[4:0]$257
+Creating decoders for process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+     1/27: $3$lookahead\valid$186[7:0]$230
+     2/27: $2$bitselwrite$data$rtl/cacheguard_array.v:52$176[7:0]$235
+     3/27: $2$bitselwrite$mask$rtl/cacheguard_array.v:52$175[7:0]$236
+     4/27: $2$bitselwrite$sel$rtl/cacheguard_array.v:52$177[2:0]$234
+     5/27: $2$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$231
+     6/27: $2$memwr$\tags$rtl/cacheguard_array.v:51$179_DATA[24:0]$232
+     7/27: $2$memwr$\tags$rtl/cacheguard_array.v:51$179_ADDR[2:0]$233
+     8/27: $2$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$227
+     9/27: $2$memwr$\data$rtl/cacheguard_array.v:49$178_DATA[31:0]$228
+    10/27: $2$memwr$\data$rtl/cacheguard_array.v:49$178_ADDR[4:0]$229
+    11/27: $2$lookahead\valid$186[7:0]$214
+    12/27: $2$bitselwrite$data$rtl/cacheguard_array.v:47$173[7:0]$216
+    13/27: $2$bitselwrite$mask$rtl/cacheguard_array.v:47$172[7:0]$217
+    14/27: $2$bitselwrite$sel$rtl/cacheguard_array.v:47$174[2:0]$215
+    15/27: $1$lookahead\valid$186[7:0]$201
+    16/27: $1$bitselwrite$mask$rtl/cacheguard_array.v:47$172[7:0]$213
+    17/27: $1$bitselwrite$data$rtl/cacheguard_array.v:47$173[7:0]$212
+    18/27: $1$bitselwrite$sel$rtl/cacheguard_array.v:47$174[2:0]$211
+    19/27: $1$bitselwrite$mask$rtl/cacheguard_array.v:52$175[7:0]$210
+    20/27: $1$bitselwrite$data$rtl/cacheguard_array.v:52$176[7:0]$209
+    21/27: $1$bitselwrite$sel$rtl/cacheguard_array.v:52$177[2:0]$208
+    22/27: $1$memwr$\data$rtl/cacheguard_array.v:49$178_ADDR[4:0]$207
+    23/27: $1$memwr$\data$rtl/cacheguard_array.v:49$178_DATA[31:0]$206
+    24/27: $1$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$205
+    25/27: $1$memwr$\tags$rtl/cacheguard_array.v:51$179_ADDR[2:0]$204
+    26/27: $1$memwr$\tags$rtl/cacheguard_array.v:51$179_DATA[24:0]$203
+    27/27: $1$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$202
+Creating decoders for process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+     1/9: $0\evt_refill_done[0:0]
+     2/9: $0\evt_parity_error[0:0]
+     3/9: $0\evt_miss[0:0]
+     4/9: $0\evt_hit[0:0]
+     5/9: $0\beat[1:0]
+     6/9: $0\addr_q[31:0]
+     7/9: $0\state[2:0]
+     8/9: $0\cpu_rsp_error[0:0]
+     9/9: $0\cpu_rsp_data[31:0]
+
+5.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+5.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_EN' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:33$249'.
+  created $dff cell `$procdff$547' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:33$249'.
+  created $dff cell `$procdff$548' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_ADDR' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:33$249'.
+  created $dff cell `$procdff$549' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$lookahead\valid$186' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$550' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\tags$rtl/cacheguard_array.v:51$179_EN' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$551' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\tags$rtl/cacheguard_array.v:51$179_DATA' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$552' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\tags$rtl/cacheguard_array.v:51$179_ADDR' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$553' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\data$rtl/cacheguard_array.v:49$178_EN' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$554' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\data$rtl/cacheguard_array.v:49$178_DATA' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$555' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$memwr$\data$rtl/cacheguard_array.v:49$178_ADDR' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$556' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$bitselwrite$sel$rtl/cacheguard_array.v:52$177' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$557' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$bitselwrite$data$rtl/cacheguard_array.v:52$176' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$558' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$bitselwrite$mask$rtl/cacheguard_array.v:52$175' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$559' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$bitselwrite$sel$rtl/cacheguard_array.v:47$174' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$560' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$bitselwrite$data$rtl/cacheguard_array.v:47$173' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$561' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$bitselwrite$mask$rtl/cacheguard_array.v:47$172' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$562' with positive edge clock.
+Creating register for signal `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.\valid' using process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+  created $dff cell `$procdff$563' with positive edge clock.
+Creating register for signal `\cacheguard.\cpu_rsp_data' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$564' with positive edge clock.
+Creating register for signal `\cacheguard.\cpu_rsp_error' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$565' with positive edge clock.
+Creating register for signal `\cacheguard.\evt_hit' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$566' with positive edge clock.
+Creating register for signal `\cacheguard.\evt_miss' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$567' with positive edge clock.
+Creating register for signal `\cacheguard.\evt_parity_error' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$568' with positive edge clock.
+Creating register for signal `\cacheguard.\evt_refill_done' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$569' with positive edge clock.
+Creating register for signal `\cacheguard.\state' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$570' with positive edge clock.
+Creating register for signal `\cacheguard.\addr_q' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$571' with positive edge clock.
+Creating register for signal `\cacheguard.\beat' using process `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+  created $dff cell `$procdff$572' with positive edge clock.
+
+5.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+5.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:33$249'.
+Removing empty process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:33$249'.
+Found and cleaned up 4 empty switches in `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+Removing empty process `$paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.$proc$rtl/cacheguard_array.v:42$187'.
+Found and cleaned up 10 empty switches in `\cacheguard.$proc$rtl/cacheguard.v:54$161'.
+Removing empty process `cacheguard.$proc$rtl/cacheguard.v:54$161'.
+Cleaned up 15 empty switches.
+
+5.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.
+Optimizing module cacheguard.
+<suppressed ~6 debug messages>
+
+5.3. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod\cacheguard_array\ENABLE_PARITY=32'00000000000000000000000000000001.
+<suppressed ~1 debug messages>
+
+5.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~4 debug messages>
+
+5.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 34 unused cells and 185 unused wires.
+<suppressed ~39 debug messages>
+
+5.6. Executing CHECK pass (checking for obvious problems).
+Checking module cacheguard...
+Found and reported 0 problems.
+
+5.7. Executing OPT pass (performing simple optimizations).
+
+5.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+<suppressed ~120 debug messages>
+Removed a total of 40 cells.
+
+5.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $flatten\u_array.$procmux$302.
+    dead port 1/2 on $mux $flatten\u_array.$procmux$308.
+    dead port 1/2 on $mux $flatten\u_array.$procmux$314.
+    dead port 1/2 on $mux $flatten\u_array.$procmux$320.
+    dead port 1/2 on $mux $flatten\u_array.$procmux$326.
+    dead port 1/2 on $mux $flatten\u_array.$procmux$296.
+    dead port 1/2 on $mux $flatten\u_array.$procmux$272.
+Removed 7 multiplexer ports.
+<suppressed ~20 debug messages>
+
+5.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+    Consolidated identical input bits for $mux cell $flatten\u_array.$procmux$293:
+      Old ports: A=25'0000000000000000000000000, B=25'1111111111111111111111111, Y=$flatten\u_array.$procmux$293_Y
+      New ports: A=1'0, B=1'1, Y=$flatten\u_array.$procmux$293_Y [0]
+      New connections: $flatten\u_array.$procmux$293_Y [24:1] = { $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] $flatten\u_array.$procmux$293_Y [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_array.$procmux$311:
+      Old ports: A=0, B=32'11111111111111111111111111111111, Y=$flatten\u_array.$procmux$311_Y
+      New ports: A=1'0, B=1'1, Y=$flatten\u_array.$procmux$311_Y [0]
+      New connections: $flatten\u_array.$procmux$311_Y [31:1] = { $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] $flatten\u_array.$procmux$311_Y [0] }
+  Optimizing cells in module \cacheguard.
+    Consolidated identical input bits for $mux cell $flatten\u_array.$procmux$380:
+      Old ports: A=$flatten\u_array.$2$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$227, B=0, Y=$flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192
+      New ports: A=$flatten\u_array.$procmux$311_Y [0], B=1'0, Y=$flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0]
+      New connections: $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [31:1] = { $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] $flatten\u_array.$0$memwr$\data$rtl/cacheguard_array.v:49$178_EN[31:0]$192 [0] }
+    Consolidated identical input bits for $mux cell $flatten\u_array.$procmux$389:
+      Old ports: A=$flatten\u_array.$2$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$231, B=25'0000000000000000000000000, Y=$flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189
+      New ports: A=$flatten\u_array.$procmux$293_Y [0], B=1'0, Y=$flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0]
+      New connections: $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [24:1] = { $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] $flatten\u_array.$0$memwr$\tags$rtl/cacheguard_array.v:51$179_EN[24:0]$189 [0] }
+  Optimizing cells in module \cacheguard.
+Performed a total of 4 changes.
+
+5.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+<suppressed ~12 debug messages>
+Removed a total of 4 cells.
+
+5.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 0 unused cells and 51 unused wires.
+<suppressed ~1 debug messages>
+
+5.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~24 debug messages>
+
+5.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+Performed a total of 0 changes.
+
+5.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.7.16. Finished OPT passes. (There is nothing left to do.)
+
+5.8. Executing FSM pass (extract and optimize FSM).
+
+5.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+Found FSM state register cacheguard.state.
+
+5.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+Extracting FSM `\state' from module `\cacheguard'.
+  found $dff cell for state register: $procdff$570
+  root of input selection tree: $0\state[2:0]
+  found reset state: 3'000 (guessed from mux tree)
+  found ctrl input: \rst
+  found ctrl input: $eq$rtl/cacheguard.v:41$153_Y
+  found ctrl input: $eq$rtl/cacheguard.v:35$136_Y
+  found ctrl input: $eq$rtl/cacheguard.v:37$144_Y
+  found ctrl input: $eq$rtl/cacheguard.v:42$156_Y
+  found ctrl input: $eq$rtl/cacheguard.v:33$130_Y
+  found ctrl input: $eq$rtl/cacheguard.v:40$150_Y
+  found state code: 3'000
+  found ctrl input: \cpu_rsp_ready
+  found ctrl input: $logic_and$rtl/cacheguard.v:113$170_Y
+  found state code: 3'010
+  found state code: 3'101
+  found ctrl input: \mem_rsp_valid
+  found ctrl input: $eq$rtl/cacheguard.v:102$167_Y
+  found state code: 3'100
+  found ctrl input: \mem_req_ready
+  found state code: 3'011
+  found ctrl input: $ne$rtl/cacheguard.v:79$162_Y
+  found ctrl input: \cpu_req_valid
+  found state code: 3'001
+  found ctrl output: $eq$rtl/cacheguard.v:33$130_Y
+  found ctrl output: $eq$rtl/cacheguard.v:35$136_Y
+  found ctrl output: $eq$rtl/cacheguard.v:37$144_Y
+  found ctrl output: $eq$rtl/cacheguard.v:40$150_Y
+  found ctrl output: $eq$rtl/cacheguard.v:41$153_Y
+  found ctrl output: $eq$rtl/cacheguard.v:42$156_Y
+  ctrl inputs: { $logic_and$rtl/cacheguard.v:113$170_Y $eq$rtl/cacheguard.v:102$167_Y $ne$rtl/cacheguard.v:79$162_Y \mem_rsp_valid \mem_req_ready \cpu_rsp_ready \cpu_req_valid \rst }
+  ctrl outputs: { $eq$rtl/cacheguard.v:42$156_Y $eq$rtl/cacheguard.v:41$153_Y $eq$rtl/cacheguard.v:40$150_Y $eq$rtl/cacheguard.v:37$144_Y $eq$rtl/cacheguard.v:35$136_Y $eq$rtl/cacheguard.v:33$130_Y $0\state[2:0] }
+  transition:      3'000 8'------00 ->      3'000 9'001000000
+  transition:      3'000 8'------10 ->      3'001 9'001000001
+  transition:      3'000 8'-------1 ->      3'000 9'001000000
+  transition:      3'100 8'0------0 ->      3'010 9'000010010
+  transition:      3'100 8'1------0 ->      3'101 9'000010101
+  transition:      3'100 8'-------1 ->      3'000 9'000010000
+  transition:      3'010 8'----0--0 ->      3'010 9'100000010
+  transition:      3'010 8'----1--0 ->      3'011 9'100000011
+  transition:      3'010 8'-------1 ->      3'000 9'100000000
+  transition:      3'001 8'0-0----0 ->      3'010 9'000001010
+  transition:      3'001 8'1-0----0 ->      3'101 9'000001101
+  transition:      3'001 8'--1----0 ->      3'101 9'000001101
+  transition:      3'001 8'-------1 ->      3'000 9'000001000
+  transition:      3'101 8'-----0-0 ->      3'101 9'010000101
+  transition:      3'101 8'-----1-0 ->      3'000 9'010000000
+  transition:      3'101 8'-------1 ->      3'000 9'010000000
+  transition:      3'011 8'---0---0 ->      3'011 9'000100011
+  transition:      3'011 8'-0-1---0 ->      3'010 9'000100010
+  transition:      3'011 8'-1-1---0 ->      3'100 9'000100100
+  transition:      3'011 8'-------1 ->      3'000 9'000100000
+
+5.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$576' from module `\cacheguard'.
+
+5.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 16 unused cells and 16 unused wires.
+<suppressed ~17 debug messages>
+
+5.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+Optimizing FSM `$fsm$\state$576' from module `\cacheguard'.
+  Removing unused output signal $0\state[2:0] [0].
+  Removing unused output signal $0\state[2:0] [1].
+  Removing unused output signal $0\state[2:0] [2].
+
+5.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+Recoding FSM `$fsm$\state$576' from module `\cacheguard' using `auto' encoding:
+  mapping auto encoding to `one-hot` for this FSM.
+  000 -> -----1
+  100 -> ----1-
+  010 -> ---1--
+  001 -> --1---
+  101 -> -1----
+  011 -> 1-----
+
+5.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+FSM `$fsm$\state$576' from module `cacheguard':
+-------------------------------------
+
+  Information on FSM $fsm$\state$576 (\state):
+
+  Number of input signals:    8
+  Number of output signals:   6
+  Number of state bits:       6
+
+  Input signals:
+    0: \rst
+    1: \cpu_req_valid
+    2: \cpu_rsp_ready
+    3: \mem_req_ready
+    4: \mem_rsp_valid
+    5: $ne$rtl/cacheguard.v:79$162_Y
+    6: $eq$rtl/cacheguard.v:102$167_Y
+    7: $logic_and$rtl/cacheguard.v:113$170_Y
+
+  Output signals:
+    0: $eq$rtl/cacheguard.v:33$130_Y
+    1: $eq$rtl/cacheguard.v:35$136_Y
+    2: $eq$rtl/cacheguard.v:37$144_Y
+    3: $eq$rtl/cacheguard.v:40$150_Y
+    4: $eq$rtl/cacheguard.v:41$153_Y
+    5: $eq$rtl/cacheguard.v:42$156_Y
+
+  State encoding:
+    0:   6'-----1  <RESET STATE>
+    1:   6'----1-
+    2:   6'---1--
+    3:   6'--1---
+    4:   6'-1----
+    5:   6'1-----
+
+  Transition Table (state_in, ctrl_in, state_out, ctrl_out):
+      0:     0 8'------00   ->     0 6'001000
+      1:     0 8'-------1   ->     0 6'001000
+      2:     0 8'------10   ->     3 6'001000
+      3:     1 8'-------1   ->     0 6'000010
+      4:     1 8'0------0   ->     2 6'000010
+      5:     1 8'1------0   ->     4 6'000010
+      6:     2 8'-------1   ->     0 6'100000
+      7:     2 8'----0--0   ->     2 6'100000
+      8:     2 8'----1--0   ->     5 6'100000
+      9:     3 8'-------1   ->     0 6'000001
+     10:     3 8'0-0----0   ->     2 6'000001
+     11:     3 8'1-0----0   ->     4 6'000001
+     12:     3 8'--1----0   ->     4 6'000001
+     13:     4 8'-----1-0   ->     0 6'010000
+     14:     4 8'-------1   ->     0 6'010000
+     15:     4 8'-----0-0   ->     4 6'010000
+     16:     5 8'-------1   ->     0 6'000100
+     17:     5 8'-1-1---0   ->     1 6'000100
+     18:     5 8'-0-1---0   ->     2 6'000100
+     19:     5 8'---0---0   ->     5 6'000100
+
+-------------------------------------
+
+5.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+Mapping FSM `$fsm$\state$576' from module `\cacheguard'.
+
+5.9. Executing OPT pass (performing simple optimizations).
+
+5.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~7 debug messages>
+
+5.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~22 debug messages>
+
+5.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+Performed a total of 0 changes.
+
+5.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$572 ($dff) from module cacheguard (D = $procmux$452_Y, Q = \beat, rval = 2'00).
+Adding EN signal on $auto$ff.cc:266:slice$650 ($sdff) from module cacheguard (D = $procmux$452_Y, Q = \beat).
+Adding SRST signal on $procdff$571 ($dff) from module cacheguard (D = $procmux$478_Y, Q = \addr_q, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$662 ($sdff) from module cacheguard (D = \cpu_req_addr, Q = \addr_q).
+Adding SRST signal on $procdff$569 ($dff) from module cacheguard (D = $procmux$395_Y, Q = \evt_refill_done, rval = 1'0).
+Adding SRST signal on $procdff$568 ($dff) from module cacheguard (D = $procmux$409_Y, Q = \evt_parity_error, rval = 1'0).
+Adding SRST signal on $procdff$567 ($dff) from module cacheguard (D = $logic_not$rtl/cacheguard.v:34$133_Y, Q = \evt_miss, rval = 1'0).
+Adding SRST signal on $procdff$566 ($dff) from module cacheguard (D = \tag_hit, Q = \evt_hit, rval = 1'0).
+Adding SRST signal on $procdff$565 ($dff) from module cacheguard (D = $procmux$522_Y, Q = \cpu_rsp_error, rval = 1'0).
+Adding EN signal on $auto$ff.cc:266:slice$684 ($sdff) from module cacheguard (D = $procmux$522_Y, Q = \cpu_rsp_error).
+Adding SRST signal on $procdff$564 ($dff) from module cacheguard (D = $procmux$535_Y, Q = \cpu_rsp_data, rval = 0).
+Adding EN signal on $auto$ff.cc:266:slice$694 ($sdff) from module cacheguard (D = $procmux$535_Y, Q = \cpu_rsp_data).
+Adding SRST signal on $flatten\u_array.$procdff$563 ($dff) from module cacheguard (D = $flatten\u_array.$3$lookahead\valid$186[7:0]$230, Q = \u_array.valid, rval = 8'00000000).
+
+5.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 17 unused cells and 27 unused wires.
+<suppressed ~18 debug messages>
+
+5.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~3 debug messages>
+
+5.9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+5.9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+Performed a total of 0 changes.
+
+5.9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+5.9.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+5.9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.9.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.9.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+5.9.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+Performed a total of 0 changes.
+
+5.9.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.9.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.9.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.9.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.9.23. Finished OPT passes. (There is nothing left to do.)
+
+5.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 3) from port B of cell cacheguard.$auto$fsm_map.cc:77:implement_pattern_cache$608 ($eq).
+Removed top 28 bits (of 32) from port A of cell cacheguard.$flatten\u_array.$neg$rtl/cacheguard_array.v:0$219 ($neg).
+Converting cell cacheguard.$flatten\u_array.$neg$rtl/cacheguard_array.v:0$219 ($neg) from signed to unsigned.
+Removed top 1 bits (of 4) from port A of cell cacheguard.$flatten\u_array.$neg$rtl/cacheguard_array.v:0$219 ($neg).
+
+5.11. Executing PEEPOPT pass (run peephole optimizers).
+
+5.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module cacheguard:
+  creating $macc model for $add$rtl/cacheguard.v:106$168 ($add).
+  creating $macc model for $flatten\u_array.$neg$rtl/cacheguard_array.v:0$219 ($neg).
+  creating $alu model for $macc $flatten\u_array.$neg$rtl/cacheguard_array.v:0$219.
+  creating $alu model for $macc $add$rtl/cacheguard.v:106$168.
+  creating $alu cell for $add$rtl/cacheguard.v:106$168: $auto$alumacc.cc:485:replace_alu$699
+  creating $alu cell for $flatten\u_array.$neg$rtl/cacheguard_array.v:0$219: $auto$alumacc.cc:485:replace_alu$702
+  created 2 $alu and 0 $macc cells.
+
+5.14. Executing SHARE pass (SAT-based resource sharing).
+
+5.15. Executing OPT pass (performing simple optimizations).
+
+5.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+5.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+Performed a total of 0 changes.
+
+5.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.15.9. Finished OPT passes. (There is nothing left to do.)
+
+5.16. Executing MEMORY pass.
+
+5.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+5.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+5.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing cacheguard.u_array.data write port 0.
+  Analyzing cacheguard.u_array.g_parity.parity write port 0.
+  Analyzing cacheguard.u_array.tags write port 0.
+
+5.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+5.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\u_array.data'[0] in module `\cacheguard': no output FF found.
+Checking read port `\u_array.g_parity.parity'[0] in module `\cacheguard': no output FF found.
+Checking read port `\u_array.tags'[0] in module `\cacheguard': no output FF found.
+Checking read port address `\u_array.data'[0] in module `\cacheguard': merged address FF to cell.
+Checking read port address `\u_array.g_parity.parity'[0] in module `\cacheguard': merged address FF to cell.
+Checking read port address `\u_array.tags'[0] in module `\cacheguard': merged address FF to cell.
+
+5.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+5.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+5.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.18. Executing OPT pass (performing simple optimizations).
+
+5.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~23 debug messages>
+
+5.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+5.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 0 unused cells and 22 unused wires.
+<suppressed ~1 debug messages>
+
+5.18.5. Finished fast OPT passes.
+
+5.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \u_array.data in module \cacheguard:
+  created 32 $dff cells and 0 static cells of width 32.
+Extracted addr FF from read port 0 of cacheguard.u_array.data: $\u_array.data$rdreg[0]
+  read interface: 1 $dff and 31 $mux cells.
+  write interface: 32 write mux blocks.
+Mapping memory \u_array.g_parity.parity in module \cacheguard:
+  created 32 $dff cells and 0 static cells of width 1.
+Extracted addr FF from read port 0 of cacheguard.u_array.g_parity.parity: $\u_array.g_parity.parity$rdreg[0]
+  read interface: 1 $dff and 31 $mux cells.
+  write interface: 32 write mux blocks.
+Mapping memory \u_array.tags in module \cacheguard:
+  created 8 $dff cells and 0 static cells of width 25.
+Extracted addr FF from read port 0 of cacheguard.u_array.tags: $\u_array.tags$rdreg[0]
+  read interface: 1 $dff and 7 $mux cells.
+  write interface: 8 write mux blocks.
+
+5.20. Executing OPT pass (performing simple optimizations).
+
+5.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~11 debug messages>
+
+5.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+5.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~86 debug messages>
+
+5.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+    New ctrl vector for $pmux cell $procmux$452: \state [5]
+  Optimizing cells in module \cacheguard.
+Performed a total of 1 changes.
+
+5.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.20.6. Executing OPT_SHARE pass.
+
+5.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $auto$ff.cc:266:slice$651 ($sdffe) from module cacheguard (D = $procmux$452_Y, Q = \beat).
+Adding SRST signal on $\u_array.g_parity.parity$rdreg[0] ($dff) from module cacheguard (D = $auto$rtlil.cc:2498:Mux$710, Q = $\u_array.g_parity.parity$rdreg[0]$q, rval = 5'00000).
+Adding SRST signal on $\u_array.tags$rdreg[0] ($dff) from module cacheguard (D = $auto$rtlil.cc:2498:Mux$720, Q = $\u_array.tags$rdreg[0]$q, rval = 3'000).
+
+5.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 2 unused cells and 153 unused wires.
+<suppressed ~3 debug messages>
+
+5.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~1 debug messages>
+
+5.20.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.20.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~86 debug messages>
+
+5.20.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+    New input vector for $reduce_and cell $auto$opt_dff.cc:220:make_patterns_logic$1482: { $auto$opt_dff.cc:194:make_patterns_logic$658 $auto$opt_dff.cc:194:make_patterns_logic$1479 $auto$opt_dff.cc:194:make_patterns_logic$656 $auto$opt_dff.cc:194:make_patterns_logic$654 $auto$opt_dff.cc:194:make_patterns_logic$652 }
+  Optimizing cells in module \cacheguard.
+Performed a total of 1 changes.
+
+5.20.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.20.14. Executing OPT_SHARE pass.
+
+5.20.15. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $memory\u_array.tags[7]$1423 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[7]).
+Adding EN signal on $memory\u_array.tags[6]$1421 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[6]).
+Adding EN signal on $memory\u_array.tags[5]$1419 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[5]).
+Adding EN signal on $memory\u_array.tags[4]$1417 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[4]).
+Adding EN signal on $memory\u_array.tags[3]$1415 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[3]).
+Adding EN signal on $memory\u_array.tags[2]$1413 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[2]).
+Adding EN signal on $memory\u_array.tags[1]$1411 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[1]).
+Adding EN signal on $memory\u_array.tags[0]$1409 ($dff) from module cacheguard (D = \addr_q [31:7], Q = \u_array.tags[0]).
+Adding EN signal on $memory\u_array.g_parity.parity[9]$1142 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[9]).
+Adding EN signal on $memory\u_array.g_parity.parity[8]$1140 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[8]).
+Adding EN signal on $memory\u_array.g_parity.parity[7]$1138 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[7]).
+Adding EN signal on $memory\u_array.g_parity.parity[6]$1136 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[6]).
+Adding EN signal on $memory\u_array.g_parity.parity[5]$1134 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[5]).
+Adding EN signal on $memory\u_array.g_parity.parity[4]$1132 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[4]).
+Adding EN signal on $memory\u_array.g_parity.parity[3]$1130 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[3]).
+Adding EN signal on $memory\u_array.g_parity.parity[31]$1186 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[31]).
+Adding EN signal on $memory\u_array.g_parity.parity[30]$1184 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[30]).
+Adding EN signal on $memory\u_array.g_parity.parity[2]$1128 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[2]).
+Adding EN signal on $memory\u_array.g_parity.parity[29]$1182 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[29]).
+Adding EN signal on $memory\u_array.g_parity.parity[28]$1180 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[28]).
+Adding EN signal on $memory\u_array.g_parity.parity[27]$1178 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[27]).
+Adding EN signal on $memory\u_array.g_parity.parity[26]$1176 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[26]).
+Adding EN signal on $memory\u_array.g_parity.parity[25]$1174 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[25]).
+Adding EN signal on $memory\u_array.g_parity.parity[24]$1172 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[24]).
+Adding EN signal on $memory\u_array.g_parity.parity[23]$1170 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[23]).
+Adding EN signal on $memory\u_array.g_parity.parity[22]$1168 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[22]).
+Adding EN signal on $memory\u_array.g_parity.parity[21]$1166 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[21]).
+Adding EN signal on $memory\u_array.g_parity.parity[20]$1164 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[20]).
+Adding EN signal on $memory\u_array.g_parity.parity[1]$1126 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[1]).
+Adding EN signal on $memory\u_array.g_parity.parity[19]$1162 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[19]).
+Adding EN signal on $memory\u_array.g_parity.parity[18]$1160 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[18]).
+Adding EN signal on $memory\u_array.g_parity.parity[17]$1158 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[17]).
+Adding EN signal on $memory\u_array.g_parity.parity[16]$1156 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[16]).
+Adding EN signal on $memory\u_array.g_parity.parity[15]$1154 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[15]).
+Adding EN signal on $memory\u_array.g_parity.parity[14]$1152 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[14]).
+Adding EN signal on $memory\u_array.g_parity.parity[13]$1150 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[13]).
+Adding EN signal on $memory\u_array.g_parity.parity[12]$1148 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[12]).
+Adding EN signal on $memory\u_array.g_parity.parity[11]$1146 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[11]).
+Adding EN signal on $memory\u_array.g_parity.parity[10]$1144 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[10]).
+Adding EN signal on $memory\u_array.g_parity.parity[0]$1124 ($dff) from module cacheguard (D = $flatten\u_array.$0$memwr$\g_parity.parity$rtl/cacheguard_array.v:35$180_DATA[0:0]$251, Q = \u_array.g_parity.parity[0]).
+Adding EN signal on $memory\u_array.data[9]$741 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[9]).
+Adding EN signal on $memory\u_array.data[8]$739 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[8]).
+Adding EN signal on $memory\u_array.data[7]$737 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[7]).
+Adding EN signal on $memory\u_array.data[6]$735 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[6]).
+Adding EN signal on $memory\u_array.data[5]$733 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[5]).
+Adding EN signal on $memory\u_array.data[4]$731 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[4]).
+Adding EN signal on $memory\u_array.data[3]$729 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[3]).
+Adding EN signal on $memory\u_array.data[31]$785 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[31]).
+Adding EN signal on $memory\u_array.data[30]$783 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[30]).
+Adding EN signal on $memory\u_array.data[2]$727 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[2]).
+Adding EN signal on $memory\u_array.data[29]$781 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[29]).
+Adding EN signal on $memory\u_array.data[28]$779 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[28]).
+Adding EN signal on $memory\u_array.data[27]$777 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[27]).
+Adding EN signal on $memory\u_array.data[26]$775 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[26]).
+Adding EN signal on $memory\u_array.data[25]$773 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[25]).
+Adding EN signal on $memory\u_array.data[24]$771 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[24]).
+Adding EN signal on $memory\u_array.data[23]$769 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[23]).
+Adding EN signal on $memory\u_array.data[22]$767 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[22]).
+Adding EN signal on $memory\u_array.data[21]$765 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[21]).
+Adding EN signal on $memory\u_array.data[20]$763 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[20]).
+Adding EN signal on $memory\u_array.data[1]$725 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[1]).
+Adding EN signal on $memory\u_array.data[19]$761 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[19]).
+Adding EN signal on $memory\u_array.data[18]$759 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[18]).
+Adding EN signal on $memory\u_array.data[17]$757 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[17]).
+Adding EN signal on $memory\u_array.data[16]$755 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[16]).
+Adding EN signal on $memory\u_array.data[15]$753 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[15]).
+Adding EN signal on $memory\u_array.data[14]$751 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[14]).
+Adding EN signal on $memory\u_array.data[13]$749 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[13]).
+Adding EN signal on $memory\u_array.data[12]$747 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[12]).
+Adding EN signal on $memory\u_array.data[11]$745 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[11]).
+Adding EN signal on $memory\u_array.data[10]$743 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[10]).
+Adding EN signal on $memory\u_array.data[0]$723 ($dff) from module cacheguard (D = \mem_rsp_data, Q = \u_array.data[0]).
+
+5.20.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 73 unused cells and 74 unused wires.
+<suppressed ~74 debug messages>
+
+5.20.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.20.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.20.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \cacheguard..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~14 debug messages>
+
+5.20.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \cacheguard.
+Performed a total of 0 changes.
+
+5.20.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+Removed a total of 0 cells.
+
+5.20.22. Executing OPT_SHARE pass.
+
+5.20.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.20.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+
+5.20.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+
+5.20.26. Finished OPT passes. (There is nothing left to do.)
+
+5.21. Executing TECHMAP pass (map to technology primitives).
+
+5.21.1. Executing Verilog-2005 frontend: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/workspace/scratch/62293a3354d3/eda-tools/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+5.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_or.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $reduce_or.
+Using template $paramod$117a422dd91271f31dcbd629d7b52dc0eb1e49ab\_90_alu for cells of type $alu.
+Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $sdff.
+Using template $paramod$175e67c02b86e96b1288b9dc100122520d7240d8\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $dff.
+Using extmapper simplemap for cells of type $reduce_xor.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$constmap:fef2dea0d08d3b0491c1bdccaa8a1b8243d36a83$paramod$21dee603dc19e4530a14795556c80eafcc4f26b8\_90_shift_shiftx for cells of type $shift.
+Analyzing pattern of constant bits for this cell:
+  Constant input on bit 0 of port A: 1'1
+Creating constmapped module `$paramod$constmap:53f81d327ce76cbf6a8a98434119a90a4847620f$paramod$21dee603dc19e4530a14795556c80eafcc4f26b8\_90_shift_shiftx'.
+
+5.21.14. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$constmap:53f81d327ce76cbf6a8a98434119a90a4847620f$paramod$21dee603dc19e4530a14795556c80eafcc4f26b8\_90_shift_shiftx..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$4402.
+    dead port 2/2 on $mux $procmux$4396.
+    dead port 2/2 on $mux $procmux$4390.
+    dead port 2/2 on $mux $procmux$4384.
+Removed 4 multiplexer ports.
+<suppressed ~677 debug messages>
+
+5.21.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$constmap:53f81d327ce76cbf6a8a98434119a90a4847620f$paramod$21dee603dc19e4530a14795556c80eafcc4f26b8\_90_shift_shiftx.
+<suppressed ~29 debug messages>
+Removed 0 unused cells and 9 unused wires.
+Using template $paramod$constmap:53f81d327ce76cbf6a8a98434119a90a4847620f$paramod$21dee603dc19e4530a14795556c80eafcc4f26b8\_90_shift_shiftx for cells of type $shift.
+Using template $paramod$constmap:ee5af906ae0d3d414c6a0471604c553ef70c8e09$paramod$92adee9538f2381d8e5006822c900eb986d754e8\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~663 debug messages>
+
+5.22. Executing OPT pass (performing simple optimizations).
+
+5.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~477 debug messages>
+
+5.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+<suppressed ~261 debug messages>
+Removed a total of 87 cells.
+
+5.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 27 unused cells and 351 unused wires.
+<suppressed ~28 debug messages>
+
+5.22.5. Finished fast OPT passes.
+
+5.23. Executing ABC pass (technology mapping using ABC).
+
+5.23.1. Extracting gate netlist of module `\cacheguard' to `<abc-temp-dir>/input.blif'..
+Extracted 1766 gates and 3150 wires to a netlist network with 1383 inputs and 140 outputs.
+
+5.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+5.23.1.2. Re-integrating ABC results.
+ABC RESULTS:              XNOR cells:       21
+ABC RESULTS:               XOR cells:       69
+ABC RESULTS:               NOT cells:       47
+ABC RESULTS:               MUX cells:     1291
+ABC RESULTS:              NAND cells:        9
+ABC RESULTS:             ORNOT cells:       21
+ABC RESULTS:                OR cells:      104
+ABC RESULTS:               NOR cells:       12
+ABC RESULTS:               AND cells:       37
+ABC RESULTS:            ANDNOT cells:      113
+ABC RESULTS:        internal signals:     1627
+ABC RESULTS:           input signals:     1383
+ABC RESULTS:          output signals:      140
+Removing temp directory.
+
+5.24. Executing OPT pass (performing simple optimizations).
+
+5.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module cacheguard.
+<suppressed ~589 debug messages>
+
+5.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\cacheguard'.
+<suppressed ~96 debug messages>
+Removed a total of 32 cells.
+
+5.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+5.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \cacheguard..
+Removed 6 unused cells and 1783 unused wires.
+<suppressed ~11 debug messages>
+
+5.24.5. Finished fast OPT passes.
+
+5.25. Executing HIERARCHY pass (managing design hierarchy).
+
+5.25.1. Analyzing design hierarchy..
+Top module:  \cacheguard
+
+5.25.2. Analyzing design hierarchy..
+Top module:  \cacheguard
+Removed 0 unused modules.
+
+5.26. Printing statistics.
+
+=== cacheguard ===
+
+   Number of wires:               1796
+   Number of wire bits:           3281
+   Number of public wires:         114
+   Number of public wire bits:    1595
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               3032
+     $_ANDNOT_                      82
+     $_AND_                         36
+     $_DFFE_PP_                   1256
+     $_DFF_P_                        6
+     $_MUX_                       1291
+     $_NAND_                         9
+     $_NOR_                         12
+     $_NOT_                         41
+     $_ORNOT_                       21
+     $_OR_                         104
+     $_SDFFE_PP0P_                  67
+     $_SDFF_PP0_                    17
+     $_XNOR_                        21
+     $_XOR_                         69
+
+5.27. Executing CHECK pass (checking for obvious problems).
+Checking module cacheguard...
+Found and reported 0 problems.
+
+6. Executing CHECK pass (checking for obvious problems).
+Checking module cacheguard...
+Found and reported 0 problems.
+{
+   "creator": "Yosys 0.33 (git sha1 2584903a060)",
+   "invocation": "stat -json ",
+   "modules": {
+      "\\cacheguard": {
+         "num_wires":         1796,
+         "num_wire_bits":     3281,
+         "num_pub_wires":     114,
+         "num_pub_wire_bits": 1595,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         3032,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 82,
+            "$_AND_": 36,
+            "$_DFFE_PP_": 1256,
+            "$_DFF_P_": 6,
+            "$_MUX_": 1291,
+            "$_NAND_": 9,
+            "$_NOR_": 12,
+            "$_NOT_": 41,
+            "$_ORNOT_": 21,
+            "$_OR_": 104,
+            "$_SDFFE_PP0P_": 67,
+            "$_SDFF_PP0_": 17,
+            "$_XNOR_": 21,
+            "$_XOR_": 69
+         }
+      }
+   },
+      "design": {
+         "num_wires":         1796,
+         "num_wire_bits":     3281,
+         "num_pub_wires":     114,
+         "num_pub_wire_bits": 1595,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         3032,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 82,
+            "$_AND_": 36,
+            "$_DFFE_PP_": 1256,
+            "$_DFF_P_": 6,
+            "$_MUX_": 1291,
+            "$_NAND_": 9,
+            "$_NOR_": 12,
+            "$_NOT_": 41,
+            "$_ORNOT_": 21,
+            "$_OR_": 104,
+            "$_SDFFE_PP0P_": 67,
+            "$_SDFF_PP0_": 17,
+            "$_XNOR_": 21,
+            "$_XOR_": 69
+         }
+      }
+}
+
+7. Executing Verilog backend.
+
+7.1. Executing BMUXMAP pass.
+
+7.2. Executing DEMUXMAP pass.
+Dumping module `\cacheguard'.
+
+End of script. Logfile hash: 00c05722e3, CPU: user 0.90s system 0.01s, MEM: 21.00 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 24% 27x opt_expr (0 sec), 17% 1x abc (0 sec), ...

@@ -1,0 +1,7 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/vvp -M /workspace/scratch/62293a3354d3/eda-tools/usr/lib/x86_64-linux-gnu/ivl /workspace/scratch/62293a3354d3/CacheGuard/build/protection_limits.vvp
+
+PASS limitation: baseline silently returns a single-bit-corrupted word; protected variant recovers
+PASS parity-bit-only fault detection and recovery
+PASS limitation: two flipped bits in one word preserve parity and are undetected
+PASS protection limits (3 scenarios)
+tb/tb_protection_limits.sv:79: $finish called at 700000 (1ps)

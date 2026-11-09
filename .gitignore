@@ -1,0 +1,7 @@
+build/
+reports/latest/
+__pycache__/
+*.pyc
+*.vcd
+*.vvp
+obj_dir/

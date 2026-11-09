@@ -1,0 +1,10 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/vvp -M /workspace/scratch/62293a3354d3/eda-tools/usr/lib/x86_64-linux-gnu/ivl /workspace/scratch/62293a3354d3/CacheGuard/build/baseline.vvp +seed=1 +random=1000 +metrics=reports/latest/baseline_seed_1.json
+
+TEST cold miss, spatial hits, index sweep, conflicts, address extremes
+TEST CPU backpressure and continuous-valid requests
+TEST memory latency 1/2/7 plus jitter and request stalls
+TEST coordinated reset in LOOKUP/MEM_REQ/all refill beats/VERIFY/RESP
+TEST randomized locality/conflicts/full-address sequences seed=1
+TEST comparable 1000-read fault-free benchmark
+PASS parity=0 seed=1 accepted=2136 completed=2128 aborted=8 faults=0 detected=0
+tb/tb_cacheguard.sv:391: $finish called at 423330000 (1ps)

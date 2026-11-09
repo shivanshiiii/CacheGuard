@@ -1,0 +1,2 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/iverilog -B /workspace/scratch/62293a3354d3/eda-tools/usr/lib/x86_64-linux-gnu/ivl -g2012 -Wall -s tb_cacheguard -Ptb_cacheguard.ENABLE_PARITY=1 -o /workspace/scratch/62293a3354d3/CacheGuard/build/protected.vvp rtl/cacheguard.v rtl/cacheguard_array.v tb/backing_memory.sv tb/tb_cacheguard.sv
+

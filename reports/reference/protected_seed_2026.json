@@ -1,0 +1,11 @@
+{
+  "pass": true, "parity": 1, "seed": 2026,
+  "accepted": 5212, "completed": 5204, "aborted": 8,
+  "faults_injected": 1026, "parity_detections": 1026,
+  "recovery_count": 1026, "recovery_cycles_sum": 22541, "recovery_cycles_max": 24,
+  "reset_scenarios": 8, "state_bins": 6, "word_bins": 32,
+  "fault_position_bins": 1024, "monitored_cycles": 79683,
+  "checked_hit_cycles": 2, "checked_minimum_miss_cycles": 15,
+  "cpu_request_stall_cycles": 334, "memory_request_stall_cycles": 2957, "cpu_response_stall_cycles": 2514,
+  "benchmark": {"reads": 1000, "hits": 634, "misses": 366, "first_response_cycles_sum": 11761, "completion_cycles_sum": 11761, "memory_word_reads": 1464}
+}

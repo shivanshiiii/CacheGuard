@@ -1,0 +1,3 @@
+TEST cold miss, spatial hits, index sweep, conflicts, address extremes
+FATAL: tb/tb_cacheguard.sv:144: DATA MISMATCH addr=00000000 got=c0decaff expected=c0decafe
+       Time: 215000  Scope: tb_cacheguard

@@ -1,0 +1,2 @@
+COMMAND: /workspace/scratch/62293a3354d3/eda-tools/usr/bin/iverilog -B /workspace/scratch/62293a3354d3/eda-tools/usr/lib/x86_64-linux-gnu/ivl -g2012 -s tb_cacheguard -o /workspace/scratch/62293a3354d3/CacheGuard/build/mutations/damage_refill.vvp /workspace/scratch/62293a3354d3/CacheGuard/build/mutations/damage_refill_cacheguard.v /workspace/scratch/62293a3354d3/CacheGuard/build/mutations/damage_refill_cacheguard_array.v tb/backing_memory.sv tb/tb_cacheguard.sv
+
